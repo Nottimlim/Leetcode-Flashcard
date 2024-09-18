@@ -227,7 +227,8 @@ function startQuizMode() {
     document.getElementById('quiz-question').textContent = flashcard.question;
     document.getElementById('quiz-solution').textContent = flashcard.solution;
     document.getElementById('quiz-answer').style.display = 'none';
-    document.getElementById('quiz-modal').style.display = 'block';
+    document.getElementById('show-answer').style.display = 'block';
+    document.getElementById('quiz-modal').classList.add('show');
 }
 
 function showQuizAnswer() {
@@ -238,7 +239,7 @@ function showQuizAnswer() {
 function endQuiz(gotCorrect) {
     updateStats(gotCorrect);
     currentQuizCard.updateReviewDate(gotCorrect ? 'good' : 'bad');
-    document.getElementById('quiz-modal').style.display = 'none';
+    document.getElementById('quiz-modal').classList.remove('show');
     saveFlashcards();
 }
 
@@ -279,6 +280,29 @@ function sortFlashcards(criteria) {
     updateFlashcardList();
 }
 
+function resetProgress() {
+    if (confirm("Are you sure you want to reset all progress? This action cannot be undone.")) {
+        // Clear localStorage
+        localStorage.removeItem('leetcodeFlashcards');
+        localStorage.removeItem('flashcardStats');
+
+        // Reset flashcards array
+        flashcards = [];
+
+        // Reset stats
+        stats = {
+            totalReviews: 0,
+            correctAnswers: 0
+        };
+
+        // Update UI
+        updateFlashcardList();
+        displayStats();
+
+        showNotification('Progress has been reset successfully.');
+    }
+}
+
 function filterFlashcards(criteria, value) {
     const filteredCards = value ? flashcards.filter(card => card[criteria] === value) : flashcards;
     updateFlashcardList(filteredCards);
@@ -294,7 +318,11 @@ function initializeApp() {
     addButton.addEventListener('click', addFlashcard);
     searchInput.addEventListener('input', searchFlashcards);
     searchButton.addEventListener('click', searchFlashcards);
-    quizButton.addEventListener('click', startQuizMode);
+    document.getElementById('quiz-button').addEventListener('click', function(e) {
+        e.preventDefault()
+        startQuizMode();
+    });
+    document.getElementById('reset-progress').addEventListener('click', resetProgress);
     document.getElementById('show-answer').addEventListener('click', showQuizAnswer);
     document.getElementById('correct-answer').addEventListener('click', () => endQuiz(true));
     document.getElementById('wrong-answer').addEventListener('click', () => endQuiz(false));

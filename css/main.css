@@ -160,3 +160,13 @@ textarea {
         margin-top: 20px;
     }
 }
+
+#reset-progress {
+    margin-top: 20px;
+    background-color: #e74c3c;
+    color: white;
+}
+
+#reset-progress:hover {
+    background-color: #c0392b;
+}
