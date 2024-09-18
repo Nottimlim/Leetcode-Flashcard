@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Flashcard Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+    <h1>LeetCode Flashcard Game</h1>
+        </header>
+        <div class="content-wrapper">
+        <main>
+            <section class="flashcard-form">
+        <input type="text" id="question-input" placeholder="Question">
+                <textarea id="solution-input" placeholder="Solution"></textarea>
+                <textarea id="notes-input" placeholder="Notes"></textarea>
+                <div class="form-row">
+                    <select id="difficulty-select"></select>
+                    <input type="text" id="topic-input" placeholder="Topic">
+                </div>
+                <button id="add-button" class="btn btn-primary">Add Flashcard</button>
+            </section>
+            <section class="flashcard-controls">
+                <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search...">
+                        <button id="search-button" class="btn btn-secondary">Search</button>
+    </div>
+                <button id="quiz-button" class="btn btn-secondary">Start Quiz</button>
+            </section>
+            <section class="flashcard-list">
+                <h2>Your Flashcards</h2>
+    <ul id="flashcard-list"></ul>
+            </section>
+                <div class="flashcard-actions">
+    <button onclick="sortFlashcards('difficulty')">Sort by Difficulty</button>
+    <select onchange="filterFlashcards('topic', this.value)">
+    <option value="">All Topics</option>
+    <!-- Add options for each topic -->
+    </select>
+                </div>
+            </main>
+            <aside class="sidebar">
+                <h2>Your Progress</h2>
+                <div id="stats"></div>
+            </aside>
+        </div>
+    </div>
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <h2>Quiz Mode</h2>
+            <p id="quiz-question"></p>
+            <button id="show-answer" class="btn btn-primary">Show Answer</button>
+            <div id="quiz-answer" style="display: none;">
+                <p id="quiz-solution"></p>
+                <button id="correct-answer" class="btn btn-secondary">I got it right</button>
+                <button id="wrong-answer" class="btn btn-secondary">I got it wrong</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
