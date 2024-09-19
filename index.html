@@ -20,7 +20,9 @@
                     <textarea id="solution-input" placeholder="Solution"></textarea>
                     <textarea id="notes-input" placeholder="Notes"></textarea>
                     <div class="form-row">
-                        <select id="difficulty-select"></select>
+                        <select id="difficulty-select">
+                            <option value="">Select Difficulty</option>
+                        </select>
                         <input type="text" id="topic-input" placeholder="Topic">
                     </div>
                     <button id="add-button" class="btn btn-primary">Add Flashcard</button>
@@ -37,10 +39,9 @@
                     <ul id="flashcard-list"></ul>
                 </section>
                 <div class="flashcard-actions">
-                    <button onclick="sortFlashcards('difficulty')">Sort by Difficulty</button>
-                    <select onchange="filterFlashcards('topic', this.value)">
+                    <button id="sort-difficulty">Sort by Difficulty</button>
+                    <select id="topic-select">
                         <option value="">All Topics</option>
-                        <!-- Add options for each topic -->
                     </select>
                 </div>
             </main>
@@ -65,6 +66,6 @@
             </div>
         </div>
     </div>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
