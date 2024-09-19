@@ -57,7 +57,7 @@ class FlashcardApp {
       console.error('Topic select element not found. Please ensure it exists in your HTML.');
     }
   }
-  
+
   loadFlashcards() {
     this.flashcards = loadFlashcards();
   }
